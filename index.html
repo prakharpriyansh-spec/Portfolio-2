@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prakhar Priyansh · Senior UX Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #FAFAF8;
+    --navy-2: #FFFFFF;
+    --navy-3: #F5F3EF;
+    --navy-4: #EFEBE4;
+    --blue: #1C5BAF;
+    --blue-light: #1C5BAF;
+    --blue-pale: #EBF2FC;
+    --blue-pale2: #F3F7FD;
+    --white: #FFFFFF;
+    --text-primary: #111110;
+    --text-secondary: #63625A;
+    --text-muted: #8E8D83;
+    --border: #E8E6E1;
+    --border-blue: #C2D6F0;
+    --accent: #1C5BAF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--text-primary);
+    font-family: 'Geist', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(250,250,248,0.82);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 18px;
+    color: var(--text-primary);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-links a .arr { transition: transform 0.2s; }
+  .nav-links a:hover .arr { transform: translate(2px, -2px); }
+
+  /* HERO */
+  .hero {
+    padding: 168px 48px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 72% 30%, rgba(28,91,175,0.09) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 15% 65%, rgba(28,91,175,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(17,17,16,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(17,17,16,0.035) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%);
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--blue-light);
+    margin-bottom: 28px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--blue-light);
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(32px, 4.6vw, 60px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    max-width: 15ch;
+    margin-bottom: 32px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--blue-light);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 60ch;
+    margin-bottom: 32px;
+  }
+
+  /* SECTION */
+  .section {
+    padding: 40px 48px 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 0 0 40px;
+    height: 1px;
+    background: var(--border-blue);
+  }
+
+  /* WORK CARDS */
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  @media (max-width: 860px) {
+    .work-grid { grid-template-columns: 1fr; }
+  }
+
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .work-card:hover {
+    border-color: var(--border-blue);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(28,91,175,0.08);
+  }
+
+  .work-thumb {
+    background: var(--navy-3);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 40px 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 240px;
+    overflow: hidden;
+  }
+
+  .work-thumb svg { width: 100%; height: auto; max-width: 420px; display: block; }
+
+  .work-body {
+    padding: 32px 36px 36px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .work-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 14px;
+  }
+
+  .work-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 26px;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+  }
+
+  .work-desc {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+  }
+
+  .work-link {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+  }
+
+  .work-link .arr { transition: transform 0.2s; }
+  .work-card:hover .work-link .arr { transform: translateX(4px); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 56px 48px 72px;
+  }
+
+  .footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 28px;
+  }
+
+  .footer-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 22px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .footer-role {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+  }
+
+  .footer-links a {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--blue-light); }
+  .footer-links a .arr { transition: transform 0.2s; }
+  .footer-links a:hover .arr { transform: translate(2px, -2px); }
+
+  @media (max-width: 600px) {
+    nav { padding: 16px 24px; }
+    .hero { padding: 132px 24px 56px; }
+    .section { padding: 32px 24px 72px; }
+    footer { padding: 48px 24px 56px; }
+    .nav-links { gap: 20px; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-tag { animation: fadeUp 0.6s ease both; }
+  .hero-title { animation: fadeUp 0.7s 0.08s ease both; }
+  .hero-sub { animation: fadeUp 0.7s 0.16s ease both; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Prakhar Priyansh —</a>
+  <ul class="nav-links">
+    <li><a href="#" target="_blank" rel="noopener">Resume <span class="arr">↗</span></a></li>
+    <li><a href="#" target="_blank" rel="noopener">LinkedIn <span class="arr">↗</span></a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">Hi, I am Prakhar Priyansh</div>
+    <h1 class="hero-title">I design enterprise procurement software that teams can operate quickly.</h1>
+    <p class="hero-sub">Senior UX Designer with deep experience designing B2B platforms. Currently working on IENT, in procurement.</p>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="section">
+  <div class="section-label">Selected work</div>
+  <div class="work-grid">
+
+    <!-- Card 1: Response Tab -->
+    <a class="work-card" href="Response_Tab.html">
+      <div class="work-thumb">
+        <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Response Tab preview">
+          <rect x="20" y="20" width="380" height="240" rx="12" fill="#FFFFFF" stroke="#E8E6E1" stroke-width="1"/>
+          <circle cx="42" cy="42" r="3.5" fill="#E8E6E1"/>
+          <circle cx="56" cy="42" r="3.5" fill="#E8E6E1"/>
+          <circle cx="70" cy="42" r="3.5" fill="#E8E6E1"/>
+          <line x1="20" y1="62" x2="400" y2="62" stroke="#E8E6E1" stroke-width="1"/>
+          <rect x="40" y="80" width="46" height="9" rx="2" fill="#8E8D83" opacity="0.35"/>
+          <rect x="98" y="80" width="60" height="9" rx="2" fill="#8E8D83" opacity="0.35"/>
+          <rect x="170" y="80" width="66" height="9" rx="2" fill="#8E8D83" opacity="0.35"/>
+          <rect x="248" y="80" width="42" height="9" rx="2" fill="#8E8D83" opacity="0.35"/>
+          <rect x="302" y="80" width="54" height="9" rx="2" fill="#8E8D83" opacity="0.35"/>
+          <rect x="40" y="104" width="66" height="11" rx="3" fill="#1C5BAF"/>
+          <line x1="40" y1="122" x2="106" y2="122" stroke="#1C5BAF" stroke-width="2"/>
+          <rect x="40" y="140" width="320" height="30" rx="6" fill="#F5F3EF"/>
+          <rect x="40" y="178" width="200" height="10" rx="3" fill="#EFEBE4"/>
+          <rect x="40" y="198" width="150" height="10" rx="3" fill="#EFEBE4"/>
+          <rect x="300" y="182" width="60" height="24" rx="6" fill="#EBF2FC" stroke="#C2D6F0" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="work-body">
+        <div class="work-eyebrow">Enterprise platform</div>
+        <h2 class="work-title">The Response Tab</h2>
+        <p class="work-desc">Two new procurement apps needed something the platform's shared five-part template could not carry: the live event itself. This is the functionality that closed that gap, validated against a real enterprise rollout.</p>
+        <span class="work-link">View case study <span class="arr">→</span></span>
+      </div>
+    </a>
+
+    <!-- Card 2: Mobile -->
+    <a class="work-card" href="Mobile_Interface_Design.html">
+      <div class="work-thumb">
+        <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IENT Mobile preview">
+          <rect x="150" y="18" width="120" height="230" rx="18" fill="#FFFFFF" stroke="#E8E6E1" stroke-width="1"/>
+          <rect x="150" y="18" width="120" height="40" rx="18" fill="#F5F3EF"/>
+          <rect x="150" y="40" width="120" height="18" fill="#F5F3EF"/>
+          <rect x="166" y="30" width="60" height="8" rx="3" fill="#8E8D83" opacity="0.4"/>
+          <rect x="166" y="74" width="88" height="10" rx="3" fill="#EFEBE4"/>
+          <rect x="166" y="94" width="60" height="10" rx="3" fill="#EFEBE4"/>
+          <rect x="166" y="122" width="88" height="26" rx="6" fill="#F5F3EF"/>
+          <rect x="166" y="156" width="88" height="26" rx="6" fill="#F5F3EF"/>
+          <!-- bottom sheet -->
+          <rect x="140" y="196" width="140" height="52" rx="14" fill="#EBF2FC" stroke="#C2D6F0" stroke-width="1"/>
+          <rect x="196" y="204" width="28" height="4" rx="2" fill="#1C5BAF" opacity="0.5"/>
+          <rect x="156" y="218" width="70" height="8" rx="3" fill="#1C5BAF" opacity="0.6"/>
+          <rect x="156" y="232" width="48" height="7" rx="3" fill="#C2D6F0"/>
+          <rect x="234" y="214" width="34" height="20" rx="6" fill="#1C5BAF"/>
+        </svg>
+      </div>
+      <div class="work-body">
+        <div class="work-eyebrow">Mobile companion</div>
+        <h2 class="work-title">IENT Mobile</h2>
+        <p class="work-desc">A procurement platform built for the desktop, brought to mobile for the Initiators and Approvers who needed to act away from their desks. Navigation, record patterns, and a bottom-sheet system, grounded in heuristic evaluation.</p>
+        <span class="work-link">View case study <span class="arr">→</span></span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Prakhar Priyansh</div>
+      <div class="footer-role">Senior UX Designer</div>
+    </div>
+    <div class="footer-links">
+      <a href="#">Email</a>
+      <a href="#" target="_blank" rel="noopener">LinkedIn <span class="arr">↗</span></a>
+      <a href="#" target="_blank" rel="noopener">Resume <span class="arr">↗</span></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
